@@ -16,10 +16,8 @@
 
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
-
 </head>
 <body>
-
 <div th:fragment="header">
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -58,8 +56,8 @@
     </nav>
 </div>
 
-<div layout:fragment="content" class="content">
-본문 영역 입니다.
+<div layout:fragment="content">
+    <h1>메인 페이지입니다.</h1>
 </div>
 
 <div th:fragment="footer">
@@ -69,6 +67,5 @@
         </div>
     </footer>
 </div>
-
 </body>
 </html>
