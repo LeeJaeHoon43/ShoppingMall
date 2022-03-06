@@ -29,9 +29,12 @@ public class Order {
     // 외래키(order_id)가 order_item테이블에 있으므로 연관 관계 주인은 OrderItem 엔티티.
     // Order 엔티티가 주인이 아니어서 mappedBy 속성으로 연관 관계 주인 설정.
     // 연관 관계 주인의 필드인 order를 mappedBy의 값으로 세팅.
-    @OneToMany(mappedBy = "order") // 주문 상품 엔티티와 1대1 매핑. OrderItem에 있는 Order에 의해 관리.
+    // 주문 상품 엔티티와 1대1 매핑. OrderItem에 있는 Order에 의해 관리.
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true) // 부모 엔티티의 영속성 상태 변화를 자식엔티티에 모두 전이.
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime reqTime;
     private LocalDateTime updateTime;
+
+
 }
