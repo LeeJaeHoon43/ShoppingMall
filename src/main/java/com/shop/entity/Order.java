@@ -10,14 +10,14 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Data
-public class Order {
+public class Order extends BaseEntity{
 
     @Id
     @GeneratedValue
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne // 한 명의 회원은 여러 주문을 할 수 있음. (주문 엔티티 기준에서 다대일 매핑)
+    @ManyToOne(fetch = FetchType.LAZY) // 한 명의 회원은 여러 주문을 할 수 있음. (주문 엔티티 기준에서 다대일 매핑)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -30,11 +30,9 @@ public class Order {
     // Order 엔티티가 주인이 아니어서 mappedBy 속성으로 연관 관계 주인 설정.
     // 연관 관계 주인의 필드인 order를 mappedBy의 값으로 세팅.
     // 주문 상품 엔티티와 1대1 매핑. OrderItem에 있는 Order에 의해 관리.
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true) // 부모 엔티티의 영속성 상태 변화를 자식엔티티에 모두 전이.
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY) // 부모 엔티티의 영속성 상태 변화를 자식엔티티에 모두 전이.
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private LocalDateTime reqTime;
-    private LocalDateTime updateTime;
-
-
+    // private LocalDateTime reqTime;
+    // private LocalDateTime updateTime;
 }

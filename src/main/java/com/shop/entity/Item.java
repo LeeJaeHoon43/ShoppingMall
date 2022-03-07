@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity // Item클래스를 entity로 선언.
 @Table(name = "item") // item이라는 테이블과 매핑.
-public class Item {
+public class Item extends BaseEntity{
 
     @Id // 기본키가 되는 멤버변수
     @Column(name = "item_id") // 매핑될 컬럼 이름.
@@ -33,6 +33,6 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; // 상품 판매 상태.
 
-    private LocalDateTime reqTime; // 등록 시간.
-    private LocalDateTime updateTime; // 수정 시간.
+    // private LocalDateTime reqTime; // 등록 시간.
+    // private LocalDateTime updateTime; // 수정 시간.
 }
