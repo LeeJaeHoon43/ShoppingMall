@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemSearchDto;
+import com.shop.dto.MainItemDto;
 import com.shop.entity.Item;
 import com.shop.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -103,5 +104,12 @@ public class ItemController {
         model.addAttribute("itemSearchDto", itemSearchDto); // 페이지 전환 시 기존 검색 조건 유지.
         model.addAttribute("maxPage", 5); // 상품관리 메뉴 하단에 보여줄 페이지 번호 개수.
         return "item/itemMng";
+    }
+
+    @GetMapping(value = "/item/{itemId}")
+    public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item", itemFormDto);
+        return "item/itemDtl";
     }
 }
