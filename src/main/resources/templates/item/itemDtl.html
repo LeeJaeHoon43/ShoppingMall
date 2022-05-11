@@ -4,6 +4,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
 
     <!-- CSS only -->
@@ -74,7 +76,6 @@
                     } else{
                         alert(jqXHR.responseText); // 주문 등록 시 에러 발생하면 메시지 노출.
                     }
-
                 }
             });
         }
